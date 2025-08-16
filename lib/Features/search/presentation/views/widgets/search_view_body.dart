@@ -1,3 +1,4 @@
+import 'package:book_app_clean_archetecture/Features/home/domain/Entities/entities.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -15,7 +16,7 @@ class SearchViewBody extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 30),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: const [
+        children:  [
           CustomSearchTextField(),
           SizedBox(
             height: 16,
@@ -37,17 +38,18 @@ class SearchViewBody extends StatelessWidget {
 }
 
 class SearchResultListView extends StatelessWidget {
-  const SearchResultListView({super.key});
-
+   SearchResultListView({super.key});
+final  EntitiesBooks books = EntitiesBooks(
+    title: 'Harry Potter and the Goblet of Fire', bookId: '', image: '', author: '', price: 22, rate: 22, number: 22,);
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
       padding: EdgeInsets.zero,
       itemCount: 10,
       itemBuilder: (context, index) {
-        return const Padding(
+        return  Padding(
           padding: EdgeInsets.symmetric(vertical: 10),
-          child: BookListViewItem(),
+          child: BookListViewItem(books: books,),
         );
       },
     );

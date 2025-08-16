@@ -33,14 +33,14 @@ class homeRepoImple extends HomeRepo {
   }
 
   @override
-  Future<Either<Failure, List<EntitiesBooks>>> fetchNewsBooks() async {
+  Future<Either<Failure, List<EntitiesBooks>>> fetchNewsBooks({int pageNumber = 0}) async {
     try {
       List<EntitiesBooks> books;
-      books = homeLocalDataSource.fetchNewsBooks();
+      books = homeLocalDataSource.fetchNewsBooks(pageNumber: pageNumber);
       if (books.isNotEmpty) {
         return right(books);
       }
-      books = await homeRemoteDataSource.fetchNewsBooks();
+      books = await homeRemoteDataSource.fetchNewsBooks(pageNumber: pageNumber);
       return right(books);
     } catch (e) {
        if (e is DioError){

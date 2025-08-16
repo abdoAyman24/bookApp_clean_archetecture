@@ -3,7 +3,8 @@ import 'package:book_app_clean_archetecture/core/widgets/custom_fading_idecator.
 import 'package:flutter/material.dart';
 
 class futurBookListViewLoadingIndecator extends StatefulWidget {
-  const futurBookListViewLoadingIndecator({super.key});
+  const futurBookListViewLoadingIndecator({super.key, required this.animation});
+  final Animation<double> animation;
 
   @override
   State<futurBookListViewLoadingIndecator> createState() => _futurBookListViewLoadingIndecatorState();
@@ -13,6 +14,7 @@ class _futurBookListViewLoadingIndecatorState extends State<futurBookListViewLoa
   @override
   Widget build(BuildContext context) {
     return  customFadingIndecator(
+      animation: widget.animation,
       child: SizedBox(
         height: MediaQuery.of(context).size.height * .3,
         child: ListView.builder(

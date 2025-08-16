@@ -9,7 +9,7 @@ abstract class HomeRemoteDataSource {
   Future<List<EntitiesBooks>> fetchFutureBooks({
     int pageNumber = 0,
   });
-  Future<List<EntitiesBooks>> fetchNewsBooks();
+  Future<List<EntitiesBooks>> fetchNewsBooks({int pageNumber = 0});
 }
 
 class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
@@ -27,9 +27,9 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
   }
 
   @override
-  Future<List<EntitiesBooks>> fetchNewsBooks() async {
+  Future<List<EntitiesBooks>> fetchNewsBooks({int pageNumber = 0}) async {
     var result = await apiService
-        .get('volumes?Filtering=free-ebooks&Sorting=newest&q=programming');
+        .get('volumes?Filtering=free-ebooks&Sorting=newest&q=programming&startIndex=${pageNumber * 10}');
     List<EntitiesBooks> books = getBooks(result);
     saveBoxData(books, KNewsBox);
     return books;

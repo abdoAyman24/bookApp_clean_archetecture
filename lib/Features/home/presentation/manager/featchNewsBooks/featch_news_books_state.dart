@@ -5,11 +5,18 @@ abstract class FeatchNewsBooksState {}
 class FeatchNewsBooksInitial extends FeatchNewsBooksState {}
 
 class FeatchNewsBooksLoad extends FeatchNewsBooksState {}
+class FeatchNewsBooksLoadPagination extends FeatchNewsBooksState {}
+
 
 class FeatchNewsBooksFailure extends FeatchNewsBooksState {
   final String errorMessage;
 
   FeatchNewsBooksFailure(this.errorMessage);
+}
+class FeatchNewsBooksFailurePagination extends FeatchNewsBooksState {
+  final String errorMessage;
+
+  FeatchNewsBooksFailurePagination(this.errorMessage);
 }
 
 class FeatchNewsBooksSucess extends FeatchNewsBooksState {

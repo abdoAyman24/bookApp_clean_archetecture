@@ -1,6 +1,9 @@
+import 'package:book_app_clean_archetecture/Features/home/presentation/manager/featchNewsBooks/featch_news_books_cubit.dart';
 import 'package:book_app_clean_archetecture/Features/home/presentation/views/widgets/featch_future_books_bloc_builder.dart';
+import 'package:book_app_clean_archetecture/Features/home/presentation/views/widgets/news_books_list_view_bloc_consumer.dart';
 import 'package:book_app_clean_archetecture/core/utils/styles.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'best_seller_list_view.dart';
 import 'custom_app_bar.dart';
 
@@ -9,9 +12,9 @@ class HomeViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const CustomScrollView(
+    return CustomScrollView(
       slivers: [
-        SliverToBoxAdapter(
+        const SliverToBoxAdapter(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children:  [
@@ -27,7 +30,7 @@ class HomeViewBody extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 30),
                 child: Text(
-                  'Best Seller',
+                  'News Books',
                   style: Styles.textStyle18,
                 ),
               ),
@@ -39,13 +42,15 @@ class HomeViewBody extends StatelessWidget {
         ),
          SliverFillRemaining(
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 30),
-            child: BestSellerListView(),
+            padding:  EdgeInsets.symmetric(horizontal: 30),
+            child: newsBooksListViewBlocConsumer(),
           ),
         ),
       ],
     );
   }
 }
+
+
 
 

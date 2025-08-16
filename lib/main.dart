@@ -35,17 +35,13 @@ class Bookly extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (context) => FeatchFutureBookCubit(
-            FeatchFuturebooksusecase(
-              homeRepo: getIt.get<homeRepoImple>(),
-            ),
+            FeatchFuturebooksusecase(homeRepo: getIt.get<homeRepoImple>()),
           )..featchFutureBooks(),
         ),
-         BlocProvider(
+        BlocProvider(
           create: (context) => FeatchNewsBooksCubit(
-            FeatchNewsebooksusecase(
-              homeRepo: getIt.get<homeRepoImple>(),
-            ),
-          ),
+            FeatchNewsebooksusecase(homeRepo: getIt.get<homeRepoImple>()),
+          )..featchNewsBooks(),
         ), // Assuming you have an AppRouter
       ],
       child: MaterialApp.router(
@@ -53,11 +49,11 @@ class Bookly extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         theme: ThemeData.dark().copyWith(
           scaffoldBackgroundColor: kPrimaryColor,
-          textTheme:
-              GoogleFonts.montserratTextTheme(ThemeData.dark().textTheme),
+          textTheme: GoogleFonts.montserratTextTheme(
+            ThemeData.dark().textTheme,
+          ),
         ),
       ),
     );
   }
 }
-

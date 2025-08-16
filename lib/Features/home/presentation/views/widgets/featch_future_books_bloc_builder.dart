@@ -15,7 +15,28 @@ class featchFutureBooksBlocBuilder extends StatefulWidget {
 }
 
 class _featchFutureBooksBlocBuilderState
-    extends State<featchFutureBooksBlocBuilder> {
+    extends State<featchFutureBooksBlocBuilder> with SingleTickerProviderStateMixin {
+       late AnimationController controller;
+       late Animation<double> animation;
+
+   @override
+  void initState() {
+    controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 600),
+    )..repeat(reverse: true);
+    animation = Tween(begin: 0.3, end: 0.8).animate(controller);
+    controller.addListener(() {
+      setState(() {});
+    });
+    super.initState();
+  }
+  @override
+  void dispose() {
+   controller.dispose();
+    super.dispose();
+  }
+
   final List<EntitiesBooks> books = [];
   @override
   Widget build(BuildContext context) {
@@ -31,7 +52,6 @@ class _featchFutureBooksBlocBuilderState
         }
       },
       builder: (context, state) {
-        
         if (state is FeatchFutureBookSuccess ||
             state is FeatchFutureBookLoadPaggination ||
             state is FeatchFutureBookFailurePaggination) {
@@ -39,7 +59,7 @@ class _featchFutureBooksBlocBuilderState
         } else if (state is FeatchFutureBookFailure) {
           return Text(state.errorMessage);
         } else {
-         return futurBookListViewLoadingIndecator();
+          return futurBookListViewLoadingIndecator(animation: animation,);
         }
       },
     );
