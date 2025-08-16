@@ -9,21 +9,23 @@ class FeatchNewsBooksCubit extends Cubit<FeatchNewsBooksState> {
     : super(FeatchNewsBooksInitial());
   final FeatchNewsebooksusecase featchNewsebooksusecase;
 
-  Future<void> featchNewsBooks({int pageNumber =0}) async {
-    if(pageNumber > 0) {
-      emit(FeatchNewsBooksLoadPagination());
+  Future<void> featchNewsBooks({int pageNumber = 0}) async {
+    if(pageNumber == 0) {
+        emit(FeatchNewsBooksLoad());
+     
     } else {
-      emit(FeatchNewsBooksLoad());
+     emit(FeatchNewsBooksLoadPagination());
     }
    
 
     var result = await featchNewsebooksusecase.call(pageNumber);
     result.fold(
       (failure) {
-        if (pageNumber > 0) {
-          emit(FeatchNewsBooksFailurePagination(failure.errorMessage));
+        if (pageNumber == 0) {
+           emit(FeatchNewsBooksFailure(failure.errorMessage));
+         
         } else {
-          emit(FeatchNewsBooksFailure(failure.errorMessage));
+          emit(FeatchNewsBooksFailurePagination(failure.errorMessage));
         }
       },
       (books) {

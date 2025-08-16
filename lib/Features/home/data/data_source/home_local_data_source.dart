@@ -25,11 +25,12 @@ class HomeLocalDataSourceImpl implements HomeLocalDataSource {
   List<EntitiesBooks> fetchNewsBooks({int pageNumber = 0}) {
     int startIndex = pageNumber * 10;
     int endIndex = (pageNumber + 1) * 10;
-    int length = Hive.box<EntitiesBooks>(KNewsBox).length;
+    
+    var box = Hive.box<EntitiesBooks>(KNewsBox);
+    int length = box.length;
     if (startIndex>= length ||endIndex> length){
       return []; // Return an empty list if the indices are out of bounds
     }
-    var box = Hive.box<EntitiesBooks>(KNewsBox);
     return box.values.toList().sublist( startIndex, endIndex);
   }
 }
