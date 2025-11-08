@@ -27,6 +27,7 @@ class FeatchNewsBooksCubit extends Cubit<FeatchNewsBooksState> {
         } else {
           emit(FeatchNewsBooksFailurePagination(failure.errorMessage));
         }
+         emit(FeatchNewsBooksFailure(failure.errorMessage));
       },
       (books) {
         emit(FeatchNewsBooksSucess(books));

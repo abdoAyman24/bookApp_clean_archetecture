@@ -4,17 +4,16 @@ import 'package:book_app_clean_archetecture/Features/home/presentation/views/wid
 import 'package:book_app_clean_archetecture/core/utils/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'best_seller_list_view.dart';
 import 'custom_app_bar.dart';
 
 class HomeViewBody extends StatefulWidget {
-  const HomeViewBody({Key? key}) : super(key: key);
+  const HomeViewBody({super.key});
 
   @override
-  _HomeViewBodyState createState() => _HomeViewBodyState();
+  HomeViewBodyState createState() => HomeViewBodyState();
 }
 
-class _HomeViewBodyState extends State<HomeViewBody> {
+class HomeViewBodyState extends State<HomeViewBody> {
   final ScrollController _scrollController = ScrollController();
   bool isLoadingMore = false;
   int nextPage = 0;
@@ -32,12 +31,11 @@ class _HomeViewBodyState extends State<HomeViewBody> {
     final currentScroll = _scrollController.position.pixels;
     final scrollPercentage = currentScroll / maxScroll;
 
-    if (scrollPercentage >= 0.7 ) {
+    if (scrollPercentage >= 0.7) {
       // 🔹 استدعاء Cubit لجلب المزيد من الكتب
       context.read<FeatchNewsBooksCubit>().featchNewsBooks(
         pageNumber: nextPage++,
       );
-      
     }
   }
 
@@ -74,7 +72,7 @@ class _HomeViewBodyState extends State<HomeViewBody> {
         SliverFillRemaining(
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 30),
-            child: newsBooksListViewBlocConsumer(),
+            child: NewsBooksListViewBlocConsumer(),
           ),
         ),
       ],
