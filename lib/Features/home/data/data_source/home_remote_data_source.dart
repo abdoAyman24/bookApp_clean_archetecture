@@ -7,7 +7,8 @@ import 'package:book_app_clean_archetecture/core/utils/function/save_box_data.da
 
 abstract class HomeRemoteDataSource {
   Future<List<EntitiesBooks>> fetchFutureBooks({
-    int pageNumber = 0,
+    int pageNumber = 0
+    
   });
   Future<List<EntitiesBooks>> fetchNewsBooks({int pageNumber = 0});
 }
